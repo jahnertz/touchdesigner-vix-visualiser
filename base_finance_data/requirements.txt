@@ -1,1 +1,2 @@
-qrcode[pil]
+typing_extensions
+pandas-datareader
