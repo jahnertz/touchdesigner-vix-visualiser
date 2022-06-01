@@ -1,3 +1,4 @@
+import os
 import pathlib
 
 req_file                = tdu.expandPath(ipar.ExtPython.Pyreqs)
@@ -43,6 +44,12 @@ formatted_mac_txt          = mac_txt.format(reqs=req_file, target=install_target
 
 # print(formatted_mac_txt)
 # print(formatted_win_txt)
+
+try:
+    os.makedirs('{}/python'.format(install_script_path))
+except OSError as e:
+    if e.errono != errno.EEXIST:
+        rasie
 
 with open(str(win_file), "w+") as win_script :
     win_script.write(formatted_win_txt)
