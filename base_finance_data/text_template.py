@@ -1,5 +1,8 @@
 import os
+import sys
+import stat
 import pathlib
+import errno
 
 req_file                = tdu.expandPath(ipar.ExtPython.Pyreqs)
 install_target          = tdu.expandPath(ipar.ExtPython.Target)
@@ -48,11 +51,13 @@ formatted_mac_txt          = mac_txt.format(reqs=req_file, target=install_target
 try:
     os.makedirs('{}/python'.format(install_script_path))
 except OSError as e:
-    if e.errono != errno.EEXIST:
-        rasie
+    if e.errno != errno.EEXIST:
+        raise
 
 with open(str(win_file), "w+") as win_script :
     win_script.write(formatted_win_txt)
 
 with open(str(mac_file), "w+") as mac_script :
     mac_script.write(formatted_mac_txt)
+
+# os.chmod(str(mac_file), stat.S_IXUSR) # TODO: make mac script executable
