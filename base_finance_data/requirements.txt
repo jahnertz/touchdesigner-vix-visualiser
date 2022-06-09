@@ -1,1 +1,1 @@
-pandas-datareader
+yahoo_fin
